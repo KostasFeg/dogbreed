@@ -1,0 +1,19 @@
+body {
+  background-color: rgb(206, 206, 206);
+}
+
+.toBeHidden {
+  opacity: 0;
+  overflow: hidden;
+}
+.hero {
+  background-color: rebeccapurple;
+}
+
+.navbar {
+  background-color: gray;
+}
+
+.Footer {
+  background-color: gray;
+}
