@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     transform: 'scale(0)',
   },
+  margin: {
+    margin: '5px',
+  },
 }));
 
 const formatResult = ({ className, probability }) => (
@@ -87,7 +90,7 @@ const Entry = ({ user, entry, handleLikes, handleDeletion }) => {
   };
 
   return (
-    <Accordion>
+    <Accordion className={classes.margin}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -141,6 +144,7 @@ const Entry = ({ user, entry, handleLikes, handleDeletion }) => {
                     ref={textAreaRef}
                     primary={entry.user.username}
                     value={entry.user.username}
+                    secondary={entry.user.name}
                   />
                 </ListItem>
                 <ListItem button>
@@ -156,7 +160,6 @@ const Entry = ({ user, entry, handleLikes, handleDeletion }) => {
                   </ListItemIcon>
                   <ListItemText primary={entry.location} />
                 </ListItem>
-
                 <Divider light />
                 <ListItem button>
                   <ListItemIcon>

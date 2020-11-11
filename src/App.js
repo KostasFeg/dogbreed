@@ -47,10 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
   centerAlignment: {
     display: 'flex',
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     '& > *': {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
     },
   },
   centerAlignmentBot: {
@@ -63,9 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
   center: {},
   end: {
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    flexGrow: '4',
+    height: '100%',
   },
 }));
 
@@ -234,8 +233,8 @@ const App = () => {
               <div className={classes.centerAlignment}>
                 <ButtonGroup
                   className={classes.center}
-                  variant="contained"
-                  color="primary"
+                  variant="text"
+                  color="secondary"
                   aria-label="contained primary button group"
                 >
                   <Button onClick={() => handlePagination(5)}>5</Button>
@@ -247,7 +246,6 @@ const App = () => {
                     color="secondary"
                     id="Search"
                     label="Search"
-                    variant="outlined"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                   />
@@ -273,8 +271,6 @@ const App = () => {
                   page={page}
                   onChange={handleChange}
                   defaultPage={1}
-                  color="primary"
-                  size="large"
                 />
               </div>
             ) : (
