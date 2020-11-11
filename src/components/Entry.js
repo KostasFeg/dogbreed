@@ -19,6 +19,7 @@ import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
 import IsJason from 'is-json';
+import DayJs from 'dayjs';
 
 import Alert from '@material-ui/lab/Alert';
 
@@ -167,7 +168,9 @@ const Entry = ({ user, entry, handleLikes, handleDeletion }) => {
                   </ListItemIcon>
                   <ListItemText
                     primary={entry.likes}
-                    secondary={entry.createdAt}
+                    secondary={DayJs(entry.createdAt).format(
+                      'DD/MM/YYYY  HH:mm:ss'
+                    )}
                   />
                 </ListItem>
               </List>
