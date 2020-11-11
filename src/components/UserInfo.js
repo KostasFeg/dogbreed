@@ -22,6 +22,7 @@ import Divider from '@material-ui/core/Divider';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import FormatListNumberedRoundedIcon from '@material-ui/icons/FormatListNumberedRounded';
 import CalendarTodayRoundedIcon from '@material-ui/icons/CalendarTodayRounded';
+import dayjs from 'dayjs';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -175,7 +176,10 @@ const UserInfo = ({ user, logOut, handleLogin }) => {
             <ListItemIcon>
               <CalendarTodayRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary={'account created:'} secondary={user.date} />
+            <ListItemText
+              primary={'account created:'}
+              secondary={dayjs(user.date).format('DD/MM/YYYY  HH:mm:ss')}
+            />
           </ListItem>
           <Divider />
           <ListItem button divider>

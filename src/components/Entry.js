@@ -19,9 +19,13 @@ import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
 import IsJason from 'is-json';
-import DayJs from 'dayjs';
+import Chip from '@material-ui/core/Chip';
 
+import relativeTime from 'dayjs/plugin/relativeTime';
 import Alert from '@material-ui/lab/Alert';
+import dayjs from 'dayjs';
+
+dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,12 +43,20 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(4),
   },
   larger: {
-    width: theme.spacing(35),
-
+    width: theme.spacing(38),
+    alignSelf: 'center',
     alignItems: 'center',
     justifyItems: 'center',
+    marginBottom: '60px',
   },
   aligner: {
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    justifySelf: 'center',
+  },
+  alignerImg: {
+    display: 'flex',
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -58,6 +70,12 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: '5px',
   },
+  flexSummary: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 }));
 
 const formatResult = ({ className, probability }) => (
@@ -69,7 +87,6 @@ const formatResult = ({ className, probability }) => (
 const Entry = ({ user, entry, handleLikes, handleDeletion }) => {
   const [info, setInfo] = useState('');
   const classes = useStyles();
-
   const textAreaRef = useRef(null);
 
   const isJsoned = () =>
@@ -97,20 +114,23 @@ const Entry = ({ user, entry, handleLikes, handleDeletion }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Avatar alt="Image" src={entry.photoUrl} className={classes.large} />
-        <Typography
-          className={classes.heading}
-          color={
-            entry.user.username === user.username ? 'secondary' : 'primary'
-          }
-        >
-          {entry.title}
-        </Typography>
+        <div className={classes.flexSummary}>
+          <Avatar alt="Image" src={entry.photoUrl} className={classes.large} />
+          <Typography className={classes.heading}>{entry.title}</Typography>
+          <Chip
+            size="small"
+            color={
+              entry.user.username === user.username ? 'secondary' : 'primary'
+            }
+            variant="outlined"
+            label={dayjs(entry.createdAt).fromNow()}
+          ></Chip>
+        </div>
       </AccordionSummary>
       <AccordionDetails>
         <div className={classes.root}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} className={classes.alignerImg}>
               <div className={classes.aligner}>
                 <img
                   border={5}
@@ -168,7 +188,7 @@ const Entry = ({ user, entry, handleLikes, handleDeletion }) => {
                   </ListItemIcon>
                   <ListItemText
                     primary={entry.likes}
-                    secondary={DayJs(entry.createdAt).format(
+                    secondary={dayjs(entry.createdAt).format(
                       'DD/MM/YYYY  HH:mm:ss'
                     )}
                   />
