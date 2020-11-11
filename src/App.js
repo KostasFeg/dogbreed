@@ -10,16 +10,14 @@ import UserInfo from './components/UserInfo';
 import loginService from './services/login';
 import entryService from './services/entries';
 import { Switch, Route, Link } from 'react-router-dom';
-import { Switch as ToggleMode } from '@material-ui/core';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Pagination from '@material-ui/lab/Pagination';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
+import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +64,10 @@ const useStyles = makeStyles((theme) => ({
   end: {
     height: '100%',
   },
+  toolbarSettings: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
 }));
 
 const App = () => {
@@ -77,6 +79,12 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [query, setQuery] = useState('');
+
+  const icon = !darkMode ? (
+    <Brightness7RoundedIcon />
+  ) : (
+    <Brightness4RoundedIcon />
+  );
 
   useEffect(() => {
     entryService
@@ -182,7 +190,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Container>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar className={classes.toolbarSettings}>
             <Button color="inherit" component={Link} to="/">
               home
             </Button>
@@ -203,21 +211,16 @@ const App = () => {
                 'login/sign-up'
               )}
             </Button>
-            <FormControl component="fieldset">
-              <FormGroup aria-label="position" row>
-                <FormControlLabel
-                  value="end"
-                  control={
-                    <ToggleMode
-                      checked={darkMode}
-                      onChange={() => setDarkMode(!darkMode)}
-                    />
-                  }
-                  label={<Brightness4RoundedIcon />}
-                  labelPlacement="end"
-                />
-              </FormGroup>
-            </FormControl>
+
+            <IconButton
+              className={classes.flexstart}
+              edge="end"
+              color="inherit"
+              aria-label="mode"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {icon}
+            </IconButton>
           </Toolbar>
         </AppBar>
         <div className={classes.rooted}>
