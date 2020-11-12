@@ -18,6 +18,8 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
 import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,6 +82,7 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [query, setQuery] = useState('');
+  const [curName, setCurName] = useState('');
 
   const icon = !darkMode ? (
     <Brightness7RoundedIcon />
@@ -89,9 +92,9 @@ const App = () => {
 
   useEffect(() => {
     entryService
-      .getAll(page, limit, query)
+      .getAll(page, limit, query, curName)
       .then((entries) => setEntries(entries.results));
-  }, [page, limit, query]);
+  }, [page, limit, query, curName]);
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -181,6 +184,11 @@ const App = () => {
     }
   };
 
+  const handleCheckBox = () => {
+    if (!curName) return setCurName(user.username);
+    setCurName('');
+  };
+
   const handlePagination = (e) => {
     setLimit(e);
   };
@@ -253,6 +261,16 @@ const App = () => {
                     onChange={(e) => setQuery(e.target.value)}
                   />
                 </form>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      onChange={handleCheckBox}
+                      name="checkedB"
+                      color="primary"
+                    />
+                  }
+                  label="current user results"
+                />
               </div>
             ) : (
               ''

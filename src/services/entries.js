@@ -7,9 +7,9 @@ const setToken = (newToken) => {
   token = `bearer ${newToken}`;
 };
 
-const getAll = (page, limit, query) => {
+const getAll = (page, limit, query, curName) => {
   const request = axios.get(
-    `/api/entries?page=${page}&limit=${limit}&query=${query}`
+    `/api/entries?page=${page}&limit=${limit}&query=${query}&curUser=${curName}`
   );
   return request.then((response) => response.data);
 };

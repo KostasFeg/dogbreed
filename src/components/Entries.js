@@ -40,6 +40,7 @@ const Entries = ({ user, entries, handleLikes, handleDeletion }) => {
     history.push('/login');
   };
   const classes = useStyles();
+  console.log(`entries: ${JSON.stringify(entries)}`);
   return user ? (
     entries.map((entry) => (
       <Entry
