@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
   },
+  flexstart: {},
 }));
 
 const App = () => {
@@ -213,7 +214,6 @@ const App = () => {
             </Button>
 
             <IconButton
-              className={classes.flexstart}
               edge="end"
               color="inherit"
               aria-label="mode"

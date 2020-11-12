@@ -1,5 +1,12 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const SignUpForm = ({
   handleSubmit,
@@ -12,6 +19,7 @@ const SignUpForm = ({
   signPassword,
   confirmPassword,
 }) => {
+  const classes = useStyles();
   return (
     <form onSubmit={handleSubmit}>
       <h1>Sign-Up</h1>
@@ -55,7 +63,13 @@ const SignUpForm = ({
           onChange={handleConfirmPasswordChange}
         />
       </div>
-      <Button id="login-button" type="submit">
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="secondary"
+        id="login-button"
+        type="submit"
+      >
         Sign-Up
       </Button>
     </form>

@@ -12,7 +12,9 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
-import dogwalking from '../illustrations/petadoptionblue.svg';
+import dogwalking from '../illustrations/dogwalk2.svg';
+import petadoption from '../illustrations/petadoption.svg';
+import dogwalking2 from '../illustrations/dogwalking.svg';
 import { useHistory } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '200px',
   },
   paperforHero: {
-    marginTop: '15px',
+    marginTop: '10px',
     padding: theme.spacing(6),
     textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'primary',
   },
   imageResizing: {
-    width: '200px',
+    width: '280px',
   },
   modelImageResize: {
     width: theme.spacing(35),
@@ -61,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     justifySelf: 'center',
   },
 }));
+
+const svgList = [dogwalking, dogwalking2, petadoption];
+const item = svgList[Math.floor(Math.random() * svgList.length)];
 
 const stateMachine = {
   initial: 'initial',
@@ -199,7 +204,7 @@ const Recognition = ({ user, createEntry }) => {
             <img
               className={classes.imageResizing}
               alt="dog walking"
-              src={dogwalking}
+              src={item}
             />
           </Paper>
         </Grid>
@@ -265,7 +270,9 @@ const Recognition = ({ user, createEntry }) => {
               <div>
                 <p>
                   In order to save the results you have to{' '}
-                  <Button onClick={pushToLogin}>Login</Button>
+                  <Button color="primary" onClick={pushToLogin}>
+                    Login
+                  </Button>
                 </p>
               </div>
             )}

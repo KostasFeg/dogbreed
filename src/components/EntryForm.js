@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import SendRoundedIcon from '@material-ui/icons/SendRounded';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginTop: theme.spacing(3),
+  },
+}));
 
 const EntryForm = ({ createEntry, file, results }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [updateResults, setUpdateResults] = useState('');
   const [location, setLocation] = useState('');
+  const classes = useStyles();
 
   const addEntry = (event) => {
     event.preventDefault();
@@ -71,7 +80,14 @@ const EntryForm = ({ createEntry, file, results }) => {
           onChange={(e) => setUpdateResults(e.target.value)}
         />
       </div>
-      <Button id="submit" type="submit">
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        id="submit"
+        type="submit"
+        endIcon={<SendRoundedIcon></SendRoundedIcon>}
+      >
         submit
       </Button>
     </form>

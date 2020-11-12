@@ -79,9 +79,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const formatResult = ({ className, probability }) => (
-  <li text="primary" key={className}>{`${className}: ${(
-    probability * 100
-  ).toFixed(2)}%`}</li>
+  <li text="primary" key={className}>
+    {`${className}: ${(probability * 100).toFixed(2)}%`}
+  </li>
 );
 
 const Entry = ({ user, entry, handleLikes, handleDeletion }) => {

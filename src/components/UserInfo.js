@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Togglable from './Togglable';
+
 import LoginForm from './LoginForm';
 import SignupForm from './SignUpForm';
 import signUpService from '../services/signUp';
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   rooted: {
     width: '100%',
     '& > * + *': {
-      marginTop: theme.spacing(2),
+      marginTop: '10px',
     },
   },
   paper: {
@@ -118,21 +118,19 @@ const UserInfo = ({ user, logOut, handleLogin }) => {
   };
 
   const signUp = () => (
-    <Togglable buttonLabel="signup">
-      <SignupForm
-        signUsername={signUsername}
-        signName={signName}
-        signPassword={signPassword}
-        confirmPassword={confirmPassword}
-        handleSignUsernameChange={({ target }) => setSignUsername(target.value)}
-        handleSignNameChange={({ target }) => setSignName(target.value)}
-        handleSignPasswordChange={({ target }) => setSignPassword(target.value)}
-        handleConfirmPasswordChange={({ target }) =>
-          setConfirmPassword(target.value)
-        }
-        handleSubmit={handleProperSignup}
-      />
-    </Togglable>
+    <SignupForm
+      signUsername={signUsername}
+      signName={signName}
+      signPassword={signPassword}
+      confirmPassword={confirmPassword}
+      handleSignUsernameChange={({ target }) => setSignUsername(target.value)}
+      handleSignNameChange={({ target }) => setSignName(target.value)}
+      handleSignPasswordChange={({ target }) => setSignPassword(target.value)}
+      handleConfirmPasswordChange={({ target }) =>
+        setConfirmPassword(target.value)
+      }
+      handleSubmit={handleProperSignup}
+    />
   );
 
   const loginHandler = (e) => {
@@ -141,15 +139,13 @@ const UserInfo = ({ user, logOut, handleLogin }) => {
   };
 
   const login = () => (
-    <Togglable buttonLabel="login">
-      <LoginForm
-        username={username}
-        password={password}
-        handleUsernameChange={({ target }) => setUsername(target.value)}
-        handlePasswordChange={({ target }) => setPassword(target.value)}
-        handleSubmit={loginHandler}
-      />
-    </Togglable>
+    <LoginForm
+      username={username}
+      password={password}
+      handleUsernameChange={({ target }) => setUsername(target.value)}
+      handlePasswordChange={({ target }) => setPassword(target.value)}
+      handleSubmit={loginHandler}
+    />
   );
 
   const classes = useStyles();
@@ -211,8 +207,10 @@ const UserInfo = ({ user, logOut, handleLogin }) => {
         <Grid item xs={12} sm={12}>
           <Paper className={classes.paper}>
             {login()}
-            you dont have an account?
-            <Button onClick={showSignUp}>Sign-Up</Button>
+            you don' t have an account?
+            <Button color="secondary" onClick={showSignUp}>
+              Sign-Up
+            </Button>
           </Paper>
         </Grid>
         <Grid item xs={12} sm={12}>
