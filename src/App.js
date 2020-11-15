@@ -12,7 +12,6 @@ import entryService from './services/entries';
 import { Switch, Route, Link } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
-import { Alert, AlertTitle } from '@material-ui/lab';
 import Pagination from '@material-ui/lab/Pagination';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
@@ -20,6 +19,7 @@ import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
 import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,7 +70,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
   },
-  flexstart: {},
+  notifStyle: {
+    marginTop: '10px',
+  },
 }));
 
 const App = () => {
@@ -78,10 +80,12 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [notification, setNotification] = useState(null);
   const [notificationSeverity, setNotificationSeverity] = useState(null);
+  const [newEntryNotif, setNewEntryNotif] = useState(null);
   const [user, setUser] = useState(null);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [query, setQuery] = useState('');
+  const [docs, setDocs] = useState(2);
   const [curName, setCurName] = useState('');
 
   const icon = !darkMode ? (
@@ -93,7 +97,7 @@ const App = () => {
   useEffect(() => {
     entryService
       .getAll(page, limit, query, curName)
-      .then((entries) => setEntries(entries.results));
+      .then((entries) => [setEntries(entries.results), setDocs(entries.docs)]);
   }, [page, limit, query, curName]);
 
   const handleChange = (event, value) => {
@@ -150,17 +154,17 @@ const App = () => {
       .then((returnedObject) => {
         setEntries([...entries, returnedObject]);
         setNotificationSeverity('success');
-        setNotification(`New entry ${returnedObject.title}!`);
+        setNewEntryNotif(`New entry ${returnedObject.title}!`);
         setTimeout(() => {
-          setNotification(null);
+          setNewEntryNotif(null);
         }, 5000);
       })
       .catch((err) => {
         console.log(err);
         setNotificationSeverity('warning');
-        setNotification(err.response.data.error);
+        setNewEntryNotif(err.response.data.error);
         setTimeout(() => {
-          setNotification(null);
+          setNewEntryNotif(null);
         }, 5000);
       });
   };
@@ -231,18 +235,23 @@ const App = () => {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <div className={classes.rooted}>
-          {notification && (
-            <Alert variant="filled" severity={notificationSeverity}>
-              <AlertTitle>{notification}</AlertTitle>
-            </Alert>
-          )}
-        </div>
+
+        {notification && (
+          <Alert
+            className={classes.notifStyle}
+            variant="filled"
+            severity={notificationSeverity}
+          >
+            <AlertTitle>{notification}</AlertTitle>
+          </Alert>
+        )}
+        <div className={classes.rooted}></div>
         <Switch>
           <Route path="/entries">
             {user ? (
               <div className={classes.centerAlignment}>
                 <ButtonGroup
+                  disabled={curName}
                   className={classes.center}
                   variant="text"
                   color="secondary"
@@ -254,6 +263,7 @@ const App = () => {
                 </ButtonGroup>
                 <form className={classes.end} noValidate autoComplete="off">
                   <TextField
+                    disabled={curName}
                     color="secondary"
                     id="Search"
                     label="Search"
@@ -288,10 +298,11 @@ const App = () => {
                 <Pagination
                   className={classes.paginator}
                   align="center"
-                  count={10}
+                  count={Math.ceil(docs / limit)}
                   page={page}
                   onChange={handleChange}
                   defaultPage={1}
+                  disabled={curName}
                 />
               </div>
             ) : (
@@ -302,7 +313,11 @@ const App = () => {
             <UserInfo user={user} logOut={logOut} handleLogin={handleLogin} />
           </Route>
           <Route path="/">
-            <Recognition user={user} createEntry={addEntry} />
+            <Recognition
+              user={user}
+              createEntry={addEntry}
+              notif={newEntryNotif}
+            />
           </Route>
         </Switch>
         <Footer />

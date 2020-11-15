@@ -96,6 +96,7 @@ const UserInfo = ({ user, logOut, handleLogin }) => {
         password: signPassword,
       });
 
+      setNotificationSeverity('success');
       setNotification('New account successfully created!');
 
       setTimeout(() => {
@@ -107,7 +108,7 @@ const UserInfo = ({ user, logOut, handleLogin }) => {
       setSignName('');
       setConfirmPassword('');
     } catch (error) {
-      setNotificationSeverity('warning');
+      setNotificationSeverity('info');
       setNotification(error.response.data.error);
 
       setTimeout(() => {

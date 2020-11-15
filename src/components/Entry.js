@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     justify: 'center',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(16),
+    fontSize: theme.typography.pxToRem(17),
     fontWeight: theme.typography.fontWeightRegular,
-    align: 'right',
+    marginLeft: '15px',
   },
   large: {
     width: theme.spacing(4),
@@ -75,6 +75,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  marginLeft: {
+    marginLeft: '15px',
   },
 }));
 
@@ -118,6 +121,7 @@ const Entry = ({ user, entry, handleLikes, handleDeletion }) => {
           <Avatar alt="Image" src={entry.photoUrl} className={classes.large} />
           <Typography className={classes.heading}>{entry.title}</Typography>
           <Chip
+            className={classes.marginLeft}
             size="small"
             color={
               entry.user.username === user.username ? 'secondary' : 'primary'

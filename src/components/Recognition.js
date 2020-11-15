@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    minHeight: '30vh',
+    minHeight: '25vh',
     //backgroundImage:
     //'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48cGF0dGVybiBpZD0icGF0dGVybiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHZpZXdCb3g9IjAgMCA0MCw0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDMxNCkiPjxyZWN0IGlkPSJwYXR0ZXJuLWJhY2tncm91bmQiIHdpZHRoPSI0MDAlIiBoZWlnaHQ9IjQwMCUiIGZpbGw9InJnYmEoMjUwLCAyNTAsIDI1MCwxKSI+PC9yZWN0PiA8Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSI0MCIgY3k9IjIwIiByPSIwLjUiPjwvY2lyY2xlPjxjaXJjbGUgZmlsdGVyPSJ1cmwoI2ZpbHRlcjFwYXR0ZXJuKSIgZmlsbD0icmdiYSg2MywgODEsIDE4MSwxKSIgY3g9IjAiIGN5PSIyMCIgcj0iMC41Ij48L2NpcmNsZT48Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSIyLjEwNTI2MzE1Nzg5NDczNjciIGN5PSIyMCIgcj0iMC41Ij48L2NpcmNsZT48Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSI0LjIxMDUyNjMxNTc4OTQ3MzUiIGN5PSIyMCIgcj0iMC41Ij48L2NpcmNsZT48Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSI2LjMxNTc4OTQ3MzY4NDIxMSIgY3k9IjIwIiByPSIwLjUiPjwvY2lyY2xlPjxjaXJjbGUgZmlsdGVyPSJ1cmwoI2ZpbHRlcjFwYXR0ZXJuKSIgZmlsbD0icmdiYSg2MywgODEsIDE4MSwxKSIgY3g9IjguNDIxMDUyNjMxNTc4OTQ3IiBjeT0iMjAiIHI9IjAuNSI+PC9jaXJjbGU+PGNpcmNsZSBmaWx0ZXI9InVybCgjZmlsdGVyMXBhdHRlcm4pIiBmaWxsPSJyZ2JhKDYzLCA4MSwgMTgxLDEpIiBjeD0iMTAuNTI2MzE1Nzg5NDczNjgzIiBjeT0iMjAiIHI9IjAuNSI+PC9jaXJjbGU+PGNpcmNsZSBmaWx0ZXI9InVybCgjZmlsdGVyMXBhdHRlcm4pIiBmaWxsPSJyZ2JhKDYzLCA4MSwgMTgxLDEpIiBjeD0iMTIuNjMxNTc4OTQ3MzY4NDIxIiBjeT0iMjAiIHI9IjAuNSI+PC9jaXJjbGU+PGNpcmNsZSBmaWx0ZXI9InVybCgjZmlsdGVyMXBhdHRlcm4pIiBmaWxsPSJyZ2JhKDYzLCA4MSwgMTgxLDEpIiBjeD0iMTQuNzM2ODQyMTA1MjYzMTU4IiBjeT0iMjAiIHI9IjAuNSI+PC9jaXJjbGU+PGNpcmNsZSBmaWx0ZXI9InVybCgjZmlsdGVyMXBhdHRlcm4pIiBmaWxsPSJyZ2JhKDYzLCA4MSwgMTgxLDEpIiBjeD0iMTYuODQyMTA1MjYzMTU3ODk0IiBjeT0iMjAiIHI9IjAuNSI+PC9jaXJjbGU+PGNpcmNsZSBmaWx0ZXI9InVybCgjZmlsdGVyMXBhdHRlcm4pIiBmaWxsPSJyZ2JhKDYzLCA4MSwgMTgxLDEpIiBjeD0iMTguOTQ3MzY4NDIxMDUyNjMiIGN5PSIyMCIgcj0iMC41Ij48L2NpcmNsZT48Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSIyMS4wNTI2MzE1Nzg5NDczNjYiIGN5PSIyMCIgcj0iMC41Ij48L2NpcmNsZT48Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSIyMy4xNTc4OTQ3MzY4NDIxMDMiIGN5PSIyMCIgcj0iMC41Ij48L2NpcmNsZT48Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSIyNS4yNjMxNTc4OTQ3MzY4NDIiIGN5PSIyMCIgcj0iMC41Ij48L2NpcmNsZT48Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSIyNy4zNjg0MjEwNTI2MzE1OCIgY3k9IjIwIiByPSIwLjUiPjwvY2lyY2xlPjxjaXJjbGUgZmlsdGVyPSJ1cmwoI2ZpbHRlcjFwYXR0ZXJuKSIgZmlsbD0icmdiYSg2MywgODEsIDE4MSwxKSIgY3g9IjI5LjQ3MzY4NDIxMDUyNjMxNSIgY3k9IjIwIiByPSIwLjUiPjwvY2lyY2xlPjxjaXJjbGUgZmlsdGVyPSJ1cmwoI2ZpbHRlcjFwYXR0ZXJuKSIgZmlsbD0icmdiYSg2MywgODEsIDE4MSwxKSIgY3g9IjMxLjU3ODk0NzM2ODQyMTA1IiBjeT0iMjAiIHI9IjAuNSI+PC9jaXJjbGU+PGNpcmNsZSBmaWx0ZXI9InVybCgjZmlsdGVyMXBhdHRlcm4pIiBmaWxsPSJyZ2JhKDYzLCA4MSwgMTgxLDEpIiBjeD0iMzMuNjg0MjEwNTI2MzE1NzkiIGN5PSIyMCIgcj0iMC41Ij48L2NpcmNsZT48Y2lyY2xlIGZpbHRlcj0idXJsKCNmaWx0ZXIxcGF0dGVybikiIGZpbGw9InJnYmEoNjMsIDgxLCAxODEsMSkiIGN4PSIzNS43ODk0NzM2ODQyMTA1MyIgY3k9IjIwIiByPSIwLjUiPjwvY2lyY2xlPjxjaXJjbGUgZmlsdGVyPSJ1cmwoI2ZpbHRlcjFwYXR0ZXJuKSIgZmlsbD0icmdiYSg2MywgODEsIDE4MSwxKSIgY3g9IjM3Ljg5NDczNjg0MjEwNTI2IiBjeT0iMjAiIHI9IjAuNSI+PC9jaXJjbGU+PGNpcmNsZSBmaWx0ZXI9InVybCgjZmlsdGVyMnBhdHRlcm4pIiBmaWxsPSJyZ2JhKDI0NSwgMCwgODcsMSkiIGN4PSIwIiBjeT0iMjAiIHI9IjQiPjwvY2lyY2xlPjxjaXJjbGUgZmlsdGVyPSJ1cmwoI2ZpbHRlcjJwYXR0ZXJuKSIgZmlsbD0icmdiYSgyNDUsIDAsIDg3LDEpIiBjeD0iNDAiIGN5PSIyMCIgcj0iNCI+PC9jaXJjbGU+PC9wYXR0ZXJuPiA8ZmlsdGVyIGlkPSJmaWx0ZXIxcGF0dGVybiI+PGZlVHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwIDAuMDEiIG51bU9jdGF2ZXM9IjIiIHJlc3VsdD0icmVzdWx0MSI+PC9mZVR1cmJ1bGVuY2U+PGZlRGlzcGxhY2VtZW50TWFwIGluMj0icmVzdWx0MSIgc2NhbGU9IjEiIHJlc3VsdD0icmVzdWx0MiIgeENoYW5uZWxTZWxlY3Rvcj0iUiIgaW49IlNvdXJjZUdyYXBoaWMiIHlDaGFubmVsU2VsZWN0b3I9IkciPjwvZmVEaXNwbGFjZW1lbnRNYXA+PGZlQ29tcG9zaXRlIGluMj0icmVzdWx0MiIgaW49IlNvdXJjZUdyYXBoaWMiIG9wZXJhdG9yPSJhdG9wIiByZXN1bHQ9ImNvbXBvc2l0ZUdyYXBoaWMiPjwvZmVDb21wb3NpdGU+PGZlT2Zmc2V0IGluPSJjb21wb3NpdGVHcmFwaGljIiByZXN1bHQ9ImZiU291cmNlR3JhcGhpYyIgZHk9Ii0wLjEiPjwvZmVPZmZzZXQ+PC9maWx0ZXI+IDxmaWx0ZXIgaWQ9ImZpbHRlcjJwYXR0ZXJuIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9IjAgMC4wMSIgbnVtT2N0YXZlcz0iMiIgcmVzdWx0PSJyZXN1bHQxIj48L2ZlVHVyYnVsZW5jZT48ZmVEaXNwbGFjZW1lbnRNYXAgaW4yPSJyZXN1bHQxIiBzY2FsZT0iMSIgcmVzdWx0PSJyZXN1bHQyIiB4Q2hhbm5lbFNlbGVjdG9yPSJSIiB5Q2hhbm5lbFNlbGVjdG9yPSJHIiBpbj0iU291cmNlR3JhcGhpYyI+PC9mZURpc3BsYWNlbWVudE1hcD48ZmVDb21wb3NpdGUgaW4yPSJyZXN1bHQyIiBpbj0iU291cmNlR3JhcGhpYyIgb3BlcmF0b3I9ImF0b3AiIHJlc3VsdD0iY29tcG9zaXRlR3JhcGhpYyI+PC9mZUNvbXBvc2l0ZT48ZmVPZmZzZXQgaW49ImNvbXBvc2l0ZUdyYXBoaWMiIHJlc3VsdD0iZmJTb3VyY2VHcmFwaGljIiBkeT0iLTAuMSI+PC9mZU9mZnNldD48L2ZpbHRlcj48L2RlZnM+IDxyZWN0IGZpbGw9InVybCgjcGF0dGVybikiIGhlaWdodD0iMTAwJSIgd2lkdGg9IjEwMCUiPjwvcmVjdD48L3N2Zz4=")',
   },
@@ -50,8 +50,9 @@ const useStyles = makeStyles((theme) => ({
     width: '280px',
   },
   modelImageResize: {
-    width: theme.spacing(35),
     marginTop: '20px',
+    width: '100%',
+    height: 'auto',
   },
   list: {
     listStyle: 'none',
@@ -110,7 +111,7 @@ const getStepContent = () => {
   ];
 };
 
-const Recognition = ({ user, createEntry }) => {
+const Recognition = ({ user, createEntry, notif }) => {
   tf.setBackend('cpu');
   const [state, dispatch] = useReducer(reducer, stateMachine.initial);
   const [model, setModel] = useState(null);
@@ -123,6 +124,7 @@ const Recognition = ({ user, createEntry }) => {
   const history = useHistory();
 
   const steps = getSteps();
+  const stepContent = getStepContent();
 
   const inputRef = useRef();
   const imgRef = useRef();
@@ -214,7 +216,7 @@ const Recognition = ({ user, createEntry }) => {
               {steps.map((label, index) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
-                  <StepContent>{getStepContent(index)}</StepContent>
+                  <StepContent>{stepContent[index]}</StepContent>
                 </Step>
               ))}
             </Stepper>
@@ -259,6 +261,7 @@ const Recognition = ({ user, createEntry }) => {
                   createEntry={createEntry}
                   file={file}
                   results={results}
+                  notif={notif}
                 />
               ) : (
                 ''

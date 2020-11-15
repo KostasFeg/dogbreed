@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import { makeStyles } from '@material-ui/core/styles';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -10,11 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EntryForm = ({ createEntry, file, results }) => {
+const EntryForm = ({ createEntry, file, results, notif }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [updateResults, setUpdateResults] = useState('');
   const [location, setLocation] = useState('');
+
   const classes = useStyles();
 
   const addEntry = (event) => {
@@ -39,58 +41,68 @@ const EntryForm = ({ createEntry, file, results }) => {
   };
 
   return (
-    <form id="form" onSubmit={addEntry}>
-      <div>
-        <TextField
-          id="title"
-          label="title"
-          type="author"
-          value={title}
-          name="Author"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div>
-        <TextField
-          id="description"
-          type="text"
-          label="description"
-          value={description}
-          name="Url"
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-      <div>
-        <TextField
-          id="location"
-          label="location"
-          type="text"
-          value={location}
-          name="Url"
-          onChange={(e) => setLocation(e.target.value)}
-        />
-      </div>
-      <div>
-        <TextField
-          id="url"
-          label="different results? (optional)"
-          type="text"
-          value={updateResults}
-          name="Url"
-          onChange={(e) => setUpdateResults(e.target.value)}
-        />
-      </div>
-      <Button
-        className={classes.button}
-        variant="contained"
-        color="primary"
-        id="submit"
-        type="submit"
-        endIcon={<SendRoundedIcon></SendRoundedIcon>}
-      >
-        submit
-      </Button>
-    </form>
+    <>
+      {notif ? (
+        <Alert severity="info">
+          <AlertTitle>{notif}</AlertTitle>
+        </Alert>
+      ) : (
+        ''
+      )}
+
+      <form id="form" onSubmit={addEntry}>
+        <div>
+          <TextField
+            id="title"
+            label="title"
+            type="author"
+            value={title}
+            name="Author"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div>
+          <TextField
+            id="description"
+            type="text"
+            label="description"
+            value={description}
+            name="Url"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div>
+          <TextField
+            id="location"
+            label="location"
+            type="text"
+            value={location}
+            name="Url"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+        <div>
+          <TextField
+            id="url"
+            label="different results? (optional)"
+            type="text"
+            value={updateResults}
+            name="Url"
+            onChange={(e) => setUpdateResults(e.target.value)}
+          />
+        </div>
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          id="submit"
+          type="submit"
+          endIcon={<SendRoundedIcon></SendRoundedIcon>}
+        >
+          submit
+        </Button>
+      </form>
+    </>
   );
 };
 
